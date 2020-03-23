@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @Api(tags = "分站用户：我的")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/auth")
 @Slf4j
 public class UserLoginController {
     private final UserService userService;
@@ -64,6 +64,7 @@ public class UserLoginController {
         if (StringUtils.isEmpty(token)) {
             return Rx.fail("登录异常");
         }
+        //
         LoginRes loginRes = new LoginRes(token, tokenHead);
         return Rx.success(loginRes);
     }

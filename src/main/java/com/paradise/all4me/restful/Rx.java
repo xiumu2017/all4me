@@ -7,9 +7,9 @@ public class Rx {
 
     private static final String SUCCESS_CODE = "200";
     private static final String FAIL_CODE = "500";
-    private static final String FORBIDDEN_CODE = "500";
+    private static final String FORBIDDEN_CODE = "403";
     private static final String FORBIDDEN_MSG = "权限不允许操作";
-    private static final String UNAUTHORIZED_CODE = "UNAUTHORIZED_";
+    private static final String UNAUTHORIZED_CODE = "401";
     private static final String PERMISSION_DENIED_CODE = "500";
     private static final String UNAUTHORIZED_MSG = "未登录或登录过期，请重新登录";
     private static final String SUCCESS_MSG = "操作成功！";
