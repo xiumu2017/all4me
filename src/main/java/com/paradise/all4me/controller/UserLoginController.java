@@ -47,7 +47,7 @@ public class UserLoginController {
     @ApiOperation("用户注册")
     public R<User> registry(@Valid @RequestBody RegisterBean register) {
         // 验证码校验
-        Assert.isTrue(testCode.equals(register.getSmsCode()), "短信验证码错误");
+        Assert.isTrue(testCode.equals(register.getCaptcha()), "短信验证码错误");
         if (userService.register(register) == 1) {
             return Rx.success();
         }
@@ -55,7 +55,7 @@ public class UserLoginController {
     }
 
 
-    @ApiOperation(value = "分站用户登录")
+    @ApiOperation(value = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public R<LoginRes> login(@Valid @RequestBody LoginBean loginBean,
                              @ApiIgnore HttpServletRequest request) {
@@ -79,6 +79,13 @@ public class UserLoginController {
         Map<String, Object> resultMap = new HashMap<>(6);
         resultMap.put("baseInfo", user);
         return Rx.success(resultMap);
+    }
+
+    @ApiOperation("拉取用户信息")
+    @PostMapping(value = "/logout")
+    public R<Object> logout(@ApiIgnore Principal principal) {
+        User user = CommonUtils.getUser(principal);
+        return Rx.success(user);
     }
 
 }

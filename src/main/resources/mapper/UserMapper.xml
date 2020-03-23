@@ -11,8 +11,8 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
-        <result column="status" jdbcType="BIT" property="status"/>
-        <result column="is_del" jdbcType="BIT" property="isDel"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="is_del" jdbcType="INTEGER" property="isDel"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
@@ -55,8 +55,8 @@
         update_time, remark, create_by
         )
         values (#{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{username,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{isDel,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP},
-        #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=INTEGER}
+        #{username,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, now(),
+        now(), #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.paradise.all4me.domain.User"
@@ -112,10 +112,10 @@
                 #{username,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                #{status,jdbcType=BIT},
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="isDel != null">
-                #{isDel,jdbcType=BIT},
+                #{isDel,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
@@ -151,10 +151,10 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                `status` = #{status,jdbcType=BIT},
+                `status` = #{status,jdbcType=INTEGER},
             </if>
             <if test="isDel != null">
-                is_del = #{isDel,jdbcType=BIT},
+                is_del = #{isDel,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -181,8 +181,8 @@
         email = #{email,jdbcType=VARCHAR},
         `password` = #{password,jdbcType=VARCHAR},
         username = #{username,jdbcType=VARCHAR},
-        `status` = #{status,jdbcType=BIT},
-        is_del = #{isDel,jdbcType=BIT},
+        `status` = #{status,jdbcType=INTEGER},
+        is_del = #{isDel,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP},
         update_time = #{updateTime,jdbcType=TIMESTAMP},
         remark = #{remark,jdbcType=VARCHAR},
@@ -205,6 +205,6 @@
         <include refid="Base_Column_List"/>
         from s_user
         where email=#{email,jdbcType=VARCHAR}
-        and is_del = false
+        and is_del <![CDATA[<> 1]]>
     </select>
 </mapper>

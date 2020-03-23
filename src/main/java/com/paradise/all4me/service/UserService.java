@@ -69,9 +69,9 @@ public class UserService {
      */
     public int register(RegisterBean register) {
         User user = new User();
-        user.setEmail(register.getTelephone());
+        user.setEmail(register.getEmail());
         user.setUsername(register.getUsername());
-        user.setTelephone(register.getTelephone());
+        user.setTelephone(register.getMobile());
         user.setStatus(true);
         user.setPassword(passwordEncoder.encode(register.getPassword()));
         return userMapper.insert(user);
