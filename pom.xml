@@ -110,19 +110,19 @@
             <!--在引用时请在maven中央仓库搜索最新版本号-->
             <version>2.0.2</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.6</version>
-        </dependency>
--->
+        <!--
+                <dependency>
+                    <groupId>com.github.xiaoymin</groupId>
+                    <artifactId>swagger-bootstrap-ui</artifactId>
+                    <version>1.9.6</version>
+                </dependency>
+        -->
         <!-- mybatis plus-->
-<!--        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>3.3.1.tmp</version>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus</artifactId>
+                    <version>3.3.1.tmp</version>
+                </dependency>-->
         <!--JWT(Json Web Token)登录支持-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -134,6 +134,18 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
+        </dependency>
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.10</version>
+        </dependency>
+        <!--excel-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.0-beta1</version>
         </dependency>
     </dependencies>
 
