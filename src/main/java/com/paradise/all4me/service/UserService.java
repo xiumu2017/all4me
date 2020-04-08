@@ -6,6 +6,7 @@ import com.paradise.all4me.domain.User;
 import com.paradise.all4me.mapper.UserMapper;
 import com.paradise.all4me.security.AdminUserDetails;
 import com.paradise.all4me.security.JwtTokenUtil;
+import com.paradise.all4me.sleep.mapper.SleepRecordMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,10 +14,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * @author Paradise
@@ -31,6 +34,12 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     @Resource
     private JwtTokenUtil jwtTokenUtil;
+
+    @Resource
+    private LogService logService;
+
+    @Resource
+    private SleepRecordMapper sleepRecordMapper;
 
     public int deleteByPrimaryKey(Integer id) {
         return userMapper.deleteByPrimaryKey(id);
@@ -110,5 +119,22 @@ public class UserService {
             return null;
         }
 
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public int rollbackTest(String val) {
+        // 业务逻辑
+        Consumer<String> consumer = System.out::println;
+        consumer.accept(val);
+
+        int x = logService.rollback(val);
+        if (x != 1) {
+            consumer.accept("rollback!");
+            return 0;
+        }
+        // do
+        consumer.accept("success!");
+
+        return 1;
     }
 }
