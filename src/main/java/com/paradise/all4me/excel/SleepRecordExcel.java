@@ -31,7 +31,7 @@ public class SleepRecordExcel {
     @ExcelProperty(index = 9)
     private String remark2;
 
-    public SleepRecord toSleepRecord(Integer uid) throws ParseException {
+    SleepRecord toSleepRecord(Integer uid) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         String sleepTimeStr = this.date + " " + this.sleepTime;
         int sleepTimeInt = Math.toIntExact(sdf.parse(sleepTimeStr).getTime() / 1000);

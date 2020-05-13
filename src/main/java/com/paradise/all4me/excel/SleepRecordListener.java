@@ -11,6 +11,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Paradise
+ */
 @Slf4j
 public class SleepRecordListener extends AnalysisEventListener<SleepRecordExcel> {
 
@@ -23,7 +26,7 @@ public class SleepRecordListener extends AnalysisEventListener<SleepRecordExcel>
         this.uid = uid;
     }
 
-    public SleepRecordListener() {
+    SleepRecordListener() {
         this.sleepRecordService = null;
         this.uid = 0;
     }
