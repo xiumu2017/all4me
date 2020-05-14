@@ -14,7 +14,7 @@ public class Enums {
         return random(tc.getEnumConstants());
     }
 
-    private static <T> T random(T[] values) {
+    public static <T> T random(T[] values) {
         return values[random.nextInt(values.length)];
     }
 }
