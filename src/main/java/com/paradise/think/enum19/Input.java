@@ -8,7 +8,29 @@ import java.util.Random;
  * @author Paradise
  */
 public enum Input {
-    ;
+    /**
+     * NICKEL
+     */
+    NICKEL(5),
+    DIME(10),
+    QUARTER(25),
+    DOLLAR(100),
+    TOOTHPASTE(200),
+    CHIPS(75),
+    SODA(100),
+    SOAP(50),
+    ABORT_TRANSACTION {
+        @Override
+        public int amount() {
+            throw new RuntimeException("");
+        }
+    },
+    STOP {
+        @Override
+        public int amount() {
+            throw new RuntimeException("");
+        }
+    };
     int value;
 
     Input(int value) {
